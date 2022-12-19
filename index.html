@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cancer-radial tree</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script  src="./js/tree.js"></script>
+
+
+<!-- Navigation Bar-->
+<div class="topnav">
+  <a class="active" href="#home">Home</a>
+  <div class="topnav-right">
+    <a href="explanation.html">About</a>
+    <a href="#about">Contact</a>
+  </div>
+</div>
+
+</head>
+<body>
+
+  <!-- CSS classes-->
+<div class="title">
+  <h1>CDR</h1>
+</div>
+
+<div class="subtitle">
+    <h3>Our Cancer-Drug-Receptor Tool gives you information about the biological effectiveness of the drugs that treat the cancer!</h3>
+</div>
+
+ 
+
+
+<!-- partial:index.partial.html -->
+<!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.10/d3.min.js"></script>-->
+
+
+<!-- Dropdown Menu-->
+<div class="float-parent">
+  <div class ="dropdown float-child">
+    <button class="dropbtn">Pick a Cancer Type</button>
+    <div class="dropdown-cancers">
+      <button value="1" id="carcinoma" onclick="displayCancer()">Carcinoma</button> <!--mention id and what it is-->
+      <button value="3" id="lymphoma" onclick="displayCancer()">Lymphoma</button> <!--explain the onclick function-->
+      <button value="2" id="leukemia" onclick="displayCancer()">Leukemia</button> <!--/////CHECK IF WE ARE USING VALUE-->
+      <button value="4" id="sarcoma" onclick="displayCancer()">Sarcoma</button> 
+    </div> 
+  </div>
+
+  <!--////////////look this up : Scalable Vector Graphics////////////-->
+  <svg class="svg">
+   
+  </svg> 
+ </div>
+ 
+</body>
+</html>
+
