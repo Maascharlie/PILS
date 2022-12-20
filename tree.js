@@ -1,7 +1,10 @@
 let cancer;
 let newCancer;
+
 function displayCancer(){
+
   cancer = document.activeElement.id;
+  
   console.log(cancer) 
   recreatedataset(cancer)
 }
@@ -116,6 +119,7 @@ function recreatedataset(c){
 
         console.log(tableDataClean);
         
+        document.getElementById("svg").innerHTML = ""; //clear tree everytime a new cancer is selected
         //------START of D3----
 
         var tableDataFinal = [];
