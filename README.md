@@ -20,9 +20,7 @@ Webservices used:
 ### Executing program
 
 * To run the website, download the code as a Zipfile and open the index.html file.
-```
 
-```
 
 ## Authors
 
