@@ -1,3 +1,9 @@
+:root{
+  --font: Arial;
+  --text: black;
+  --background: white;
+  --border-colour: #6BA7C7;
+}
 
 circle {
     stroke: #05668D;
@@ -13,7 +19,9 @@ circle {
     stroke-width: 2px;
   }
   
-  
+  body{
+    background-color: var(--background);
+  }
   
   button{
   border: none;
@@ -21,6 +29,25 @@ circle {
   width: 250px;
   padding: 50px;
   }
+
+  ol{
+    display: inline-block;
+    text-align: left;
+}
+
+
+a{
+  text-decoration: none;
+  color: rgb(59, 59, 59);
+  font-style: italic;
+  
+}
+a:hover{
+  transition-timing-function: linear;
+  transition-duration: 1s;
+  text-decoration: none;
+  color: var(--border-colour);
+}
   
   
   .title{
@@ -75,6 +102,16 @@ circle {
     position: absolute;
     width: 100%;
   }
+
+  .float-child-about{
+    display: inline-block;
+    width: 45%;
+    vertical-align: middle;
+    border: 2px solid var(--border-colour);
+    border-radius: 40px;
+    padding: 2%;
+    height: 80vh;
+}
   
   /*source used:  https://www.w3schools.com/howto/howto_css_dropdown.asp*/
   
@@ -199,4 +236,8 @@ circle {
   /* Right-aligned section inside the top navigation */
   .topnav-right {
   float: right;
+  }
+
+  #wikiLink{
+    color: white;
   }

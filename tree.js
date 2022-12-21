@@ -3,9 +3,12 @@ let cancer;
 function displayCancer(){
 
   cancer = document.activeElement.id;
-  document.getElementById("selected-cancer").innerHTML=cancer
-  
-  console.log(cancer) 
+
+
+  document.getElementById("wikiLink").innerHTML = cancer //change selected cancer to cancer name
+  //set href attribute of the selected cancer/cancer name
+  const wikiLink = document.getElementById("wikiLink").setAttribute("href", "https://en.wikipedia.org/wiki/" + cancer); 
+
   recreatedataset(cancer)
 }
 

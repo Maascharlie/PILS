@@ -13,7 +13,7 @@
 <div class="topnav">
   <a class="active" href="#home">Home</a>
   <div class="topnav-right">
-    <a href="explanation.html">About</a>
+    <a href="about.html">About</a>
     <a href="#about">Contact</a>
   </div>
 </div>
@@ -40,7 +40,7 @@
 <!-- Dropdown Menu-->
   <div class="float-parent">
     <div class ="dropdown float-child">
-      <button class="dropbtn">Pick a Cancer Type</button>
+      <button class="dropbtn" id="drop">Pick a Cancer Type</button>
       <div class="dropdown-cancers">
         <button value="1" id="carcinoma" onclick="displayCancer()">Carcinoma</button> <!--mention id and what it is-->
         <button value="3" id="lymphoma" onclick="displayCancer()">Lymphoma</button> <!--explain the onclick function-->
@@ -50,10 +50,9 @@
     </div>
     <div class="statistics float-child">
       <div class="selected-cancer" id="selected-cancer">
-        Selected Cancer
+        <a href="" target="_blank" id="wikiLink"> Selected cancer </a>
       </div>
     </div>
-    
   </div>
 <!-- Radial Tree-->
   <div class="tree">
