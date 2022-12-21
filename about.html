@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cancer-radial tree</title>
+  <link rel="stylesheet" href="././style.css">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script  src="././tree.js"></script>
+
+
+<!-- Navigation Bar-->
+<div class="topnav">
+  <a class="active" href="index.html">Home</a>
+  <div class="topnav-right">
+    <a href="about.html">about</a>
+    <a href="#about">Contact</a>
+  </div>
+</div>
+
+</head>
+<body>
+
+  <!-- CSS classes-->
+<div class="title">
+  <h1>CDR</h1>
+</div>
+
+<div class="subtitle">
+    <h3>Our Cancer-Drug-Receptor Tool gives you information about the biological effectiveness of the drugs that treat the cancer!</h3>
+</div>
+
+
+
+
+<!-- Dropdown Menu-->
+  <div class="float-parent">
+    <div class ="float-child-about" id="manual">
+            <h1 id="manual"> Manual </h1>
+            <ol id="list">
+                <li> select cancer from the menu on the right </li>
+                <li> look at the tree to locate medication </li>
+                <li> for more information click the cancer name, next to the dropdown menu</li>
+            </ol>
+    </div>
+    <div class="float-child-about" id="about">
+        <h1 id="title"> What is cancer?</h1>
+        <p id="explanation"> 
+          Usually tumors (or growths) are not automaticcaly dangerous; most growths do not display aggressive or abnormal growth. Cancers do exhibit this behaviour. 
+          Cancers can have grow from a wide variety of cells in the human body, and are therefore not exclusive to a singel organ of body part. One aspect of cancer that 
+          emphasizes this point is a process called <a href="https://en.wikipedia.org/wiki/Metastasis" target="_blank" class="italics">metastesis</a>. This is the process that describes 
+          how cancer can spread throughout the body.
+        <br><br>
+          Cancer can have a wide variety of causes, ranging from toxins and viruses to radiation. Ironically, radiation can also be used to treat most cancers when used in 
+          <a href="https://en.wikipedia.org/wiki/Radiation_therapy" target="_blank" class="italics">radiation therapy</a>. Some forms of cancer have a genetic predisposition, making people 
+          with a specific set of genes more likely to get this cancer. It is important to remember that just because you have a genetic predisposition to get cancer, does not
+          mean you definitely will. This is a predisposition, not a guarantee.
+        </p>
+        <h2 id="tool"> What does our tool do? </h2>
+        <p> 
+            In this tool we have summarized the most common cancer types (lymphoma, carcinoma, sarcoma and leukemia) and their subtypes. Then we also looked at what medication
+            can be used to treat the subtype of cancer, what the role of the drug is in the body and what receptor interactions there are (if any were found in the database).
+            This information has been summarised in a tree, showing which medications can help for which type and subtype of cancer, and why.
+            <br><br>
+            For example: the type lymphoma has a subtype <a href="https://en.wikipedia.org/wiki/Hodgkin_lymphoma" target="_blank" class="italics">Hodgkin lymphoma</a>. This cancer has a genetic 
+            component with the <a href="https://en.wikipedia.org/wiki/Interleukin_13" target="_blank" class="italics"> IL-13 gene</a> and can be treated by<a href="https://en.wikipedia.org/wiki/Vincristine" target="_blank" class="italics">
+            Vincristine</a>, which is a phytogenic anteaplastic agent and tubulin modulator. This medication works on the Tubulin beta class I receptor.
+        </p>
+    </div>
+  </div>
+</body>
+</html>
+
