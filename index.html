@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="./css/style.css">
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script  src="./js/tree.js"></script>
+  <script src="./js/dropdown.js"></script>
 
 
 <!-- Navigation Bar-->
@@ -38,22 +39,28 @@
 
 
 <!-- Dropdown Menu-->
-<div class="float-parent">
-  <div class ="dropdown float-child">
-    <button class="dropbtn">Pick a Cancer Type</button>
-    <div class="dropdown-cancers">
-      <button value="1" id="carcinoma" onclick="displayCancer()">Carcinoma</button> <!--mention id and what it is-->
-      <button value="3" id="lymphoma" onclick="displayCancer()">Lymphoma</button> <!--explain the onclick function-->
-      <button value="2" id="leukemia" onclick="displayCancer()">Leukemia</button> <!--/////CHECK IF WE ARE USING VALUE-->
-      <button value="4" id="sarcoma" onclick="displayCancer()">Sarcoma</button> 
-    </div> 
+  <div class="float-parent">
+    <div class ="dropdown float-child">
+      <button class="dropbtn">Pick a Cancer Type</button>
+      <div class="dropdown-cancers">
+        <button value="1" id="carcinoma" onclick="displayCancer()">Carcinoma</button> <!--mention id and what it is-->
+        <button value="3" id="lymphoma" onclick="displayCancer()">Lymphoma</button> <!--explain the onclick function-->
+        <button value="2" id="leukemia" onclick="displayCancer()">Leukemia</button> <!--/////CHECK IF WE ARE USING VALUE-->
+        <button value="4" id="sarcoma" onclick="displayCancer()">Sarcoma</button> 
+      </div> 
+    </div>
+    <div class="statistics float-child">
+      <div class="selected-cancer" id="selected-cancer">
+        Selected Cancer
+      </div>
+    </div>
+    
   </div>
-
-  <!--////////////look this up : Scalable Vector Graphics////////////-->
-  <svg class="svg float-child" id="svg">
-   
+<!-- Radial Tree-->
+  <div class="tree">
+   <svg class="tree float-child" id="svg">
   </svg> 
- </div>
+  </div>
  
 </body>
 </html>

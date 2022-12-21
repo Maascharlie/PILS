@@ -1,9 +1,9 @@
 let cancer;
-let newCancer;
 
 function displayCancer(){
 
   cancer = document.activeElement.id;
+  document.getElementById("selected-cancer").innerHTML=cancer
   
   console.log(cancer) 
   recreatedataset(cancer)
@@ -29,7 +29,7 @@ const endpointUrl = 'https://query.wikidata.org/sparql';
  * 
  */
 const sparqlQuery = `
-SELECT ?cancer ?cancerLabel ?drug ?drugLabel ?role ?roleLbl ?receptor ?receptorLbl
+SELECT ?cancer ?cancerLabel  ?drug ?drugLabel ?role ?roleLbl ?receptor ?receptorLbl
 WHERE 
 {
   VALUES ?cancer {wd:Q33525 wd:Q208414 wd:Q29496 wd:Q223911}
@@ -38,10 +38,10 @@ WHERE
   ?item wdt:P2176 ?drug. # with treatment (drug)
   ?drug rdfs:label ?drugLabel.
   ?drug wdt:P2868 ?role.  #check for what role the drugs play in the body
-#OPTIONAL { ?drug wdt:P129 ?receptor} #check for possible receptor interactions, if any
-?drug wdt:P129 ?receptor. #check for possible receptor interactions, if any
+  #OPTIONAL { ?drug wdt:P129 ?receptor} #check for possible receptor interactions, if any
+  ?drug wdt:P129 ?receptor. #check for possible receptor interactions, if any
   ?receptor rdfs:label ?receptorLabel.
-?role rdfs:label ?roleLabel.
+  ?role rdfs:label ?roleLabel.
   FILTER(LANG(?roleLabel) = "en")
   FILTER(LANG(?cancerLabel) = "en")
   FILTER(LANG(?drugLabel) = "en")
@@ -49,6 +49,7 @@ WHERE
   BIND(CONCAT(STR(?drugLabel), " - ",STR(?roleLabel)) AS ?roleLbl) 
   BIND(CONCAT(STR(?drugLabel), " - ",STR(?receptorLabel)) AS ?receptorLbl)
   #SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". } # Helps get the label in your language, if not, then en language
+  
 }
   LIMIT 200
 
@@ -118,9 +119,12 @@ function recreatedataset(c){
             )
 
         console.log(tableDataClean);
+
+
         
         document.getElementById("svg").innerHTML = ""; //clear tree everytime a new cancer is selected
         //------START of D3----
+
 
         var tableDataFinal = [];
         console.log("TABLEDATAFINAL --> " + tableDataFinal);
@@ -141,10 +145,11 @@ function recreatedataset(c){
           return [(y = +y) * Math.cos(x -= Math.PI / 2), y * Math.sin(x)];
         }
 
+        const margin = { left: 90, top: 90, right: 90, bottom: 90 }
         var svg = d3.select("svg"),
-        width = 1000,
-        height = 480
-        g = svg.append("g").attr("transform", "translate(" + width + "," + height + ")");
+        width = 1000 - margin.left - margin.right
+        height = 1000 - margin.top - margin.bottom
+        g = svg.append("g").attr("transform", "translate(" + width + "," + (height / 2 + margin.top) + ")");
 
         var tree = d3.tree()
     .size([2 * Math.PI, 250]) // radius of the radial tree
