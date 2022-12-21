@@ -1,3 +1,9 @@
+:root{
+  --font: Arial;
+  --text: black;
+  --background: white;
+  --border-colour: #6BA7C7;
+}
 
 circle {
     stroke: #05668D;
@@ -13,7 +19,9 @@ circle {
     stroke-width: 2px;
   }
   
-  
+  body{
+    background-color: var(--background);
+  }
   
   button{
   border: none;
@@ -21,6 +29,25 @@ circle {
   width: 250px;
   padding: 50px;
   }
+
+  ol{
+    display: inline-block;
+    text-align: center;
+}
+
+
+a{
+  text-decoration: none;
+  color: rgb(59, 59, 59);
+  text-align: center;
+  
+}
+a:hover{
+  transition-timing-function: linear;
+  transition-duration: 1s;
+  text-decoration: none;
+  color: var(--border-colour);
+}
   
   
   .title{
@@ -75,6 +102,16 @@ circle {
     position: absolute;
     width: 100%;
   }
+
+  .float-child-about{
+    display: inline-block;
+    width: 45%;
+    vertical-align: middle;
+    border: 2px solid var(--border-colour);
+    border-radius: 40px;
+    padding: 2%;
+    height: 80vh;
+}
   
   /*source used:  https://www.w3schools.com/howto/howto_css_dropdown.asp*/
   
@@ -90,6 +127,7 @@ circle {
   width: 250px;
   border-radius: 15px;
   align-self: left;
+  
   }
   
   /* The container <div> - needed to position the dropdown content */
@@ -133,7 +171,7 @@ circle {
       background-color: #0465aa;
       color: white;
       padding: 30px;
-      margin-left: 170%;
+      margin-left: 250%;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 16px;
       border: none;
@@ -141,6 +179,7 @@ circle {
       width: 190px;
       border-radius: 15px;
       align-self: left;
+      
   }
   
   .node {
@@ -168,7 +207,7 @@ circle {
   
   
   
-  /* Add a black background color to the top navigation */
+  /* Add a background color to the top navigation */
   .topnav {
     background-color: rgb(0, 53, 160);
     overflow: hidden;
@@ -200,3 +239,45 @@ circle {
   .topnav-right {
   float: right;
   }
+
+  #wikiLink{
+    color: white;
+  }
+
+
+/*Source used: https://www.w3schools.com/css/css_tooltip.asp
+
+ /* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  
+  
+  
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  color: rgb(0, 53, 160);
+  text-align: center;
+  padding: 2px 0;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  min-width: 80px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  opacity: 0.75;
+ 
+  /* Position of the tooltip text  */
+  bottom: 100%;
+  right: 100%;
+  margin-left: -170px; 
+  top: -5px;
+  left: 105%;
+
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

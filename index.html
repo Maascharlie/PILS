@@ -11,9 +11,9 @@
 
 <!-- Navigation Bar-->
 <div class="topnav">
-  <a class="active" href="#home">Home</a>
+  <a class="active" href="index.html">Home</a>
   <div class="topnav-right">
-    <a href="explanation.html">About</a>
+    <a href="about.html">About</a>
     <a href="#about">Contact</a>
   </div>
 </div>
@@ -30,17 +30,10 @@
     <h3>Our Cancer-Drug-Receptor Tool gives you information about the biological effectiveness of the drugs that treat the cancer!</h3>
 </div>
 
- 
-
-
-<!-- partial:index.partial.html -->
-<!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.10/d3.min.js"></script>-->
-
-
 <!-- Dropdown Menu-->
   <div class="float-parent">
     <div class ="dropdown float-child">
-      <button class="dropbtn">Pick a Cancer Type</button>
+      <button class="dropbtn" id="drop">Pick a Cancer Type</button>
       <div class="dropdown-cancers">
         <button value="1" id="carcinoma" onclick="displayCancer()">Carcinoma</button> <!--mention id and what it is-->
         <button value="3" id="lymphoma" onclick="displayCancer()">Lymphoma</button> <!--explain the onclick function-->
@@ -48,13 +41,17 @@
         <button value="4" id="sarcoma" onclick="displayCancer()">Sarcoma</button> 
       </div> 
     </div>
+    <div class = "tooltip">
     <div class="statistics float-child">
-      <div class="selected-cancer" id="selected-cancer">
-        Selected Cancer
+    <button class="selected-cancer" id="cdrop">
+      <span class ="tooltiptext">Click on the name for further information!</span>
+        <a href="" target="_blank" id="wikiLink">Selected Cancer </a>
+        </button>
+      
       </div>
     </div>
+    </div>
     
-  </div>
 <!-- Radial Tree-->
   <div class="tree">
    <svg class="tree float-child" id="svg">

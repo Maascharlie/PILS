@@ -3,9 +3,12 @@ let cancer;
 function displayCancer(){
 
   cancer = document.activeElement.id;
-  document.getElementById("selected-cancer").innerHTML=cancer
-  
-  console.log(cancer) 
+
+
+  document.getElementById("wikiLink").innerHTML = cancer //change selected cancer to cancer name
+  //set href attribute of the selected cancer/cancer name
+  const wikiLink = document.getElementById("wikiLink").setAttribute("href", "https://en.wikipedia.org/wiki/" + cancer); 
+
   recreatedataset(cancer)
 }
 
@@ -26,7 +29,7 @@ const endpointUrl = 'https://query.wikidata.org/sparql';
 
 
 /**
- * 
+ ACTUAL QUERY
  */
 const sparqlQuery = `
 SELECT ?cancer ?cancerLabel  ?drug ?drugLabel ?role ?roleLbl ?receptor ?receptorLbl
@@ -42,16 +45,16 @@ WHERE
   ?drug wdt:P129 ?receptor. #check for possible receptor interactions, if any
   ?receptor rdfs:label ?receptorLabel.
   ?role rdfs:label ?roleLabel.
-  FILTER(LANG(?roleLabel) = "en")
+  FILTER(LANG(?roleLabel) = "en") #only english language
   FILTER(LANG(?cancerLabel) = "en")
   FILTER(LANG(?drugLabel) = "en")
   FILTER(LANG(?receptorLabel) = "en")
-  BIND(CONCAT(STR(?drugLabel), " - ",STR(?roleLabel)) AS ?roleLbl) 
-  BIND(CONCAT(STR(?drugLabel), " - ",STR(?receptorLabel)) AS ?receptorLbl)
+  BIND(CONCAT(STR(?drugLabel), " - ",STR(?roleLabel)) AS ?roleLbl) #concatenate druglabel to the rolelabel to make it unique
+  BIND(CONCAT(STR(?drugLabel), " - ",STR(?receptorLabel)) AS ?receptorLbl) #concatenate druglabel to the receptorlabel to make it unique
   #SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". } # Helps get the label in your language, if not, then en language
   
 }
-  LIMIT 200
+  LIMIT 200 #limit results to 200 items
 
 `;
 
@@ -71,7 +74,7 @@ console.log(queryDispatcher.query(sparqlQuery)) ;
 console.log() ;
 data = queryDispatcher.query(sparqlQuery) ;
 
-function recreatedataset(c){
+function recreatedataset(c){ //includes dataset formation and creation of visualization
 
   data.then(function(result){
     console.log(result) ;
@@ -85,7 +88,7 @@ function recreatedataset(c){
     /**
      * 
      */
-    var tableData = [];
+    var tableData = []; //declare empty array
 
     console.log("TABLEDATA --> " + tableData);
     tableData.push({"id":c});
@@ -94,8 +97,8 @@ function recreatedataset(c){
       if(result.results.bindings[i].cancerLabel.value==c){
         console.log("found")
         
-        tableData.push({"id":result.results.bindings[i].drugLabel.value,"parentId":c })
-        tableData.push({"id":result.results.bindings[i].roleLbl.value,"parentId":result.results.bindings[i].drugLabel.value })
+        tableData.push({"id":result.results.bindings[i].drugLabel.value,"parentId":c }) //adding drug to array with the cancer as parentID
+        tableData.push({"id":result.results.bindings[i].roleLbl.value,"parentId":result.results.bindings[i].drugLabel.value }) //adding role to array with drug as parentID
         tableData.push({"id":result.results.bindings[i].receptorLbl.value,"parentId":result.results.bindings[i].roleLbl.value }) //if commented out the level will disappear = easier tree
       
         /** puts receptor before role
@@ -146,7 +149,7 @@ function recreatedataset(c){
         }
 
         const margin = { left: 90, top: 90, right: 90, bottom: 90 }
-        var svg = d3.select("svg"),
+        var svg = d3.select("svg"), //declare svg
         width = 1000 - margin.left - margin.right
         height = 1000 - margin.top - margin.bottom
         g = svg.append("g").attr("transform", "translate(" + width + "," + (height / 2 + margin.top) + ")");
@@ -158,6 +161,8 @@ function recreatedataset(c){
 
     var root = tree(tableDataFinal);
 
+
+    //create links between nodes
   var link = g.selectAll(".link")
     .data(root.links())
     .enter().append("path")
@@ -166,6 +171,8 @@ function recreatedataset(c){
           .angle(function(d) { return d.x; })
           .radius(function(d) { return d.y; }));
 
+        
+        //create the actual nodes
    var node = g.selectAll(".node")
     .data(root.descendants())
     .enter().append("g")
@@ -178,6 +185,7 @@ function recreatedataset(c){
 
 
         //changes the radius of the node to make it proportional to the number of direct children (not grand children)
+        //Ideas taken from Stackoverflow: https://stackoverflow-com.translate.goog/questions/26887143/node-size-proportional-to-number-of-children-in-d3?_x_tr_sl=en&_x_tr_tl=nl&_x_tr_hl=nl&_x_tr_pto=sc
         node.select("circle")
     .attr("r", function(d){
          var numKids = 0;
@@ -192,9 +200,11 @@ function recreatedataset(c){
        * defines the direction of the text compared to the node 
        */
 
-   node.append("text")
+
+       //add corresponding text to each node
+   node.append("text")     
       .attr("dy", "0.11em")
-      .attr("x", function(d) { return d.x < Math.PI === !d.children ? 6 : -6; })
+      .attr("x", function(d) { return d.x < Math.PI === !d.children ? 6 : -6; })  //calculate x position of text
       .attr("text-anchor", function(d) { return d.x < Math.PI === !d.children ? "start" : "end"; })
       .attr("transform", function(d) { return "rotate(" + (d.x < Math.PI ? d.x - Math.PI / 2 : d.x + Math.PI / 2) * 180 / Math.PI + ")"; })
       .text(function(d) { return d.id.substring(d.id.lastIndexOf(".") + 1); });
